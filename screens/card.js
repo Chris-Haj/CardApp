@@ -10,7 +10,6 @@ import {
   Alert,
   Platform,
 } from "react-native";
-import prompt from "react-native-prompt-android";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as ImagePicker from "expo-image-picker";
 import { cardStyles } from "../styles/cardStyles";
@@ -144,7 +143,7 @@ const StudentCard = ({ navigation }) => {
         "plain-text",
         currentFullName
       );
-    } else {
+    } else if (Platform.OS === "android") {
       prompt(
         "Edit Name",
         "Enter your full name:",
@@ -175,6 +174,9 @@ const StudentCard = ({ navigation }) => {
         }
       );
     }
+    else { 
+
+    }
   };
 
   const editStudentId = () => {
@@ -199,7 +201,7 @@ const StudentCard = ({ navigation }) => {
         "plain-text",
         studentId
       );
-    } else {
+    } else if (Platform.OS === "android") {
       prompt(
         "Edit Student ID",
         "Enter your student ID:",
@@ -223,6 +225,9 @@ const StudentCard = ({ navigation }) => {
           defaultValue: studentId,
         }
       );
+    }
+    else{
+
     }
   };
 
