@@ -10,7 +10,7 @@ import {
   Alert,
   Platform,
 } from "react-native";
-import prompt from "react-native-prompt-android";
+// import prompt from "react-native-prompt-android";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as ImagePicker from "expo-image-picker";
 import { cardStyles } from "../styles/cardStyles";
