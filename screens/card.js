@@ -1,4 +1,4 @@
-// screens/card.js
+ad// screens/card.js
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -13,9 +13,8 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as ImagePicker from "expo-image-picker";
 import { cardStyles } from "../styles/cardStyles";
-import COLORS from "../constants/colors";
-import FlipClock from "../components/FlipClock";
 import USER_INFO from "../constants/information";
+
 
 const StudentCard = ({ navigation }) => {
   const [currentTime, setCurrentTime] = useState("");
@@ -174,7 +173,7 @@ const StudentCard = ({ navigation }) => {
         }
       );
     }
-    else { 
+    else {
 
     }
   };
@@ -226,7 +225,7 @@ const StudentCard = ({ navigation }) => {
         }
       );
     }
-    else{
+    else {
 
     }
   };
