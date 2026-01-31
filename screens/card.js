@@ -7,8 +7,6 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
-  Alert,
-  Platform,
 } from "react-native";
 // import prompt from "react-native-prompt-android";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -114,115 +112,32 @@ const StudentCard = ({ navigation }) => {
     }
   };
 
-  const editName = () => {
+  const editName = async () => {
     const currentFullName = `${firstName} ${lastName}`;
+    const text = window.prompt("Enter your full name:", currentFullName);
 
-    if (Platform.OS === "ios") {
-      Alert.prompt(
-        "Edit Name",
-        "Enter your full name:",
-        [
-          { text: "Cancel", style: "cancel" },
-          {
-            text: "Save",
-            onPress: async (text) => {
-              if (text && text.trim()) {
-                const names = text.trim().split(" ");
-                const newFirstName = names[0] || "";
-                const newLastName = names.slice(1).join(" ") || "";
+    if (text && text.trim()) {
+      const names = text.trim().split(" ");
+      const newFirstName = names[0] || "";
+      const newLastName = names.slice(1).join(" ") || "";
 
-                setFirstName(newFirstName);
-                setLastName(newLastName);
+      setFirstName(newFirstName);
+      setLastName(newLastName);
 
-                // Save to AsyncStorage
-                await saveUserData("firstName", newFirstName);
-                await saveUserData("lastName", newLastName);
-              }
-            },
-          },
-        ],
-        "plain-text",
-        currentFullName
-      );
-    } else {
-      prompt(
-        "Edit Name",
-        "Enter your full name:",
-        [
-          { text: "Cancel", style: "cancel" },
-          {
-            text: "Save",
-            onPress: async (text) => {
-              if (text && text.trim()) {
-                const names = text.trim().split(" ");
-                const newFirstName = names[0] || "";
-                const newLastName = names.slice(1).join(" ") || "";
-
-                setFirstName(newFirstName);
-                setLastName(newLastName);
-
-                // Save to AsyncStorage
-                await saveUserData("firstName", newFirstName);
-                await saveUserData("lastName", newLastName);
-              }
-            },
-          },
-        ],
-        {
-          type: "plain-text",
-          cancelable: true,
-          defaultValue: currentFullName,
-        }
-      );
+      // Save to AsyncStorage
+      await saveUserData("firstName", newFirstName);
+      await saveUserData("lastName", newLastName);
     }
   };
 
-  const editStudentId = () => {
-    if (Platform.OS === "ios") {
-      Alert.prompt(
-        "Edit Student ID",
-        "Enter your student ID:",
-        [
-          { text: "Cancel", style: "cancel" },
-          {
-            text: "Save",
-            onPress: async (text) => {
-              if (text && text.trim()) {
-                const newStudentId = text.trim();
-                setStudentId(newStudentId);
-                // Save to AsyncStorage
-                await saveUserData("studentId", newStudentId);
-              }
-            },
-          },
-        ],
-        "plain-text",
-        studentId
-      );
-    } else {
-      prompt(
-        "Edit Student ID",
-        "Enter your student ID:",
-        [
-          { text: "Cancel", style: "cancel" },
-          {
-            text: "Save",
-            onPress: async (text) => {
-              if (text && text.trim()) {
-                const newStudentId = text.trim();
-                setStudentId(newStudentId);
-                // Save to AsyncStorage
-                await saveUserData("studentId", newStudentId);
-              }
-            },
-          },
-        ],
-        {
-          type: "plain-text",
-          cancelable: true,
-          defaultValue: studentId,
-        }
-      );
+  const editStudentId = async () => {
+    const text = window.prompt("Enter your student ID:", studentId);
+
+    if (text && text.trim()) {
+      const newStudentId = text.trim();
+      setStudentId(newStudentId);
+      // Save to AsyncStorage
+      await saveUserData("studentId", newStudentId);
     }
   };
 
