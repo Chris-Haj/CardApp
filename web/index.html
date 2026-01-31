@@ -3,21 +3,40 @@
 
 <head>
     <meta charset="utf-8" />
+
+    <!-- IMPORTANT: allows coloring behind iOS status bar -->
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Hebrew</title>
+    <title>Uni</title>
 
     <!-- PWA -->
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#3B2E3D" />
+
     <style>
         html,
         body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
             background-color: #3B2E3D;
-            /* your purple */
+            /* YOUR PURPLE */
+        }
+
+        /* Make the app fill the screen */
+        #root {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: transparent;
+        }
+
+        /* Safe area for iOS notch + bottom gesture bar */
+        body {
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
         }
     </style>
-
 </head>
 
 <body>
